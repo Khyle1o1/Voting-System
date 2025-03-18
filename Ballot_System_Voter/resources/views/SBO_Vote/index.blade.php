@@ -21,44 +21,45 @@
 <!-- this is the index of SBO form -->
 
 <body>
-    <div class="flex justify-center h-screen">
-        <div class="justify-center"> 
+    <div class="flex justify-center min-h-screen">
+        <div class="w-full max-w-4xl mx-auto">
 
             <!-- header -->
-            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col" style="height: 3cm; width: 20cm;">
-                <p class="font-bold text-2xl" style="font-size: 30px;">Student Body Organization</p>
-                <p class="mt-1" style="font-family: Arial, sans-serif; font-size: 15px;">{{$college->name}}</p>
+            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col">
+                <p class="font-bold text-xl md:text-2xl">Student Body Organization</p>
+                <p class="mt-1 text-sm md:text-base">{{$college->name}}</p>
             </div>
+
             <form action="{{route('sbo.vote')}}" method="POST" onsubmit="disableButton()">
-            @csrf
-            <!-- governor container -->
-            @include('SBO_Vote.officer_containers.governor')
-            
-            <!-- vice governor -->
-            @include('SBO_Vote.officer_containers.vice_Governor')
+                @csrf
+                <!-- governor container -->
+                @include('SBO_Vote.officer_containers.governor')
 
-            <!-- sbo secretary and associate secretary -->
-            @include('SBO_Vote.officer_containers.secretary')
+                <!-- vice governor -->
+                @include('SBO_Vote.officer_containers.vice_Governor')
 
-            <!-- treasurer and associate treasurer -->
-            @include('SBO_Vote.officer_containers.treasurer')
+                <!-- sbo secretary and associate secretary -->
+                @include('SBO_Vote.officer_containers.secretary')
 
-            <!-- auditor -->
-            @include('SBO_Vote.officer_containers.auditor')
+                <!-- treasurer and associate treasurer -->
+                @include('SBO_Vote.officer_containers.treasurer')
 
-            <!-- public relations officer -->
-            @include('SBO_Vote.officer_containers.public_relation_officer')
+                <!-- auditor -->
+                @include('SBO_Vote.officer_containers.auditor')
 
-            <!-- year representatives -->
-            @include('SBO_Vote.officer_containers.representatives.index')
+                <!-- public relations officer -->
+                @include('SBO_Vote.officer_containers.public_relation_officer')
 
-            <!-- Footer -->
-            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col" style="height: 3cm; width: 20cm; justify-content: flex-end;">
-            <div style="width: 100%; display: flex; justify-content: flex-end;">
-                @include('SBO_Vote.summary_modal.summary_modal')
-            </div>
-            </div>
-            <div style="height: 15px"></div> <!-- para naay space sa ubos -->
+                <!-- year representatives -->
+                @include('SBO_Vote.officer_containers.representatives.index')
+
+                <!-- Footer -->
+                <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col">
+                    <div class="w-full flex justify-end">
+                        @include('SBO_Vote.summary_modal.summary_modal')
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>

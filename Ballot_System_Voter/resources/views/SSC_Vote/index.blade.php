@@ -21,34 +21,33 @@
 <!-- this is the index of SBO form -->
 
 <body>
-    <div class="flex justify-center h-screen">
-        <div class="justify-center"> 
+    <div class="flex justify-center min-h-screen">
+        <div class="w-full max-w-4xl mx-auto">
 
             <!-- header -->
-            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col" style="height: 3cm; width: 20cm;">
-                <p class="font-bold text-2xl" style="font-size: 30px;">Supreme Student Council</p>
+            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col">
+                <p class="font-bold text-xl md:text-2xl">Supreme Student Council</p>
             </div>
 
             <!-- form here -->
             <form action="{{route('ssc.vote')}}" method="POST" onsubmit="disableButton()">
-            @csrf
-            <!-- president container -->
-            @include('SSC_Vote.containers.president')
-            
-            <!-- vice president -->
-            @include('SSC_Vote.containers.vicePresident')
+                @csrf
+                <!-- president container -->
+                @include('SSC_Vote.containers.president')
 
-            <!-- senators -->
-            @include('SSC_Vote.containers.senators')
+                <!-- vice president -->
+                @include('SSC_Vote.containers.vicePresident')
 
-            <!-- Footer -->
-            <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col" style="height: 3cm; width: 20cm; justify-content: flex-end;">
-            <div style="width: 100%; display: flex; justify-content: flex-end;">
-                @include('SSC_Vote.summary_modal.summary_modal')
-            </div>
+                <!-- senators -->
+                @include('SSC_Vote.containers.senators')
+
+                <!-- Footer -->
+                <div class="background p-6 rounded-lg mt-3 text-center justify-center items-center flex flex-col">
+                    <div class="w-full flex justify-end">
+                        @include('SSC_Vote.summary_modal.summary_modal')
+                    </div>
+                </div>
             </form>
-            </div>
-            <div style="height: 15px"></div> <!-- para naay space sa ubos -->
         </div>
     </div>
 </body>

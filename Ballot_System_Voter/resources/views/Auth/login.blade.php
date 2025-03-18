@@ -23,12 +23,12 @@
         <!-- login container -->
         <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
             <!-- form -->
-            <div class="md:w-1/2 px-8 md:px-13">
+            <div class="md:w-1/2 px-4 md:px-13">
                 <div class="flex items-center">
                     <img src="{{ asset('images/logo.jpg') }}" style="border-radius: 50%; width: 2cm; height: auto;">
-                    <h2 class="font-bold text-2xl ml-2" style="color: #240A34;">Buk<span style="color: #FC9D22;">SU</span> COMELEC</h2>
+                    <h2 class="font-bold text-lg md:text-2xl ml-2" style="color: #240A34;">Buk<span style="color: #FC9D22;">SU</span> COMELEC</h2>
                 </div>
-                
+
                 <form action="{{route('Auth.login')}}" class="flex flex-col gap-3" method="POST">
                     @csrf
                     <p class="text-xs mt-8 text-[#002D74]">Please enter your Student ID</p>
@@ -47,7 +47,7 @@
 
             <!-- image -->
             <div class="md:block hidden w-1/2">
-            <img class="rounded-2xl" src="{{asset('images/login_Logo2.jpg')}}">
+            <img class="rounded-2xl" style="max-width: 100%; height: auto;" src="{{asset('images/login_Logo2.jpg')}}">
             </div>
         </div>
         </section>
