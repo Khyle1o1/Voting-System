@@ -60,6 +60,7 @@ class VotersController extends Controller
             if($request->student_id == '' | $request->student_id == null){return redirect()->back()->with('error', 'Please input student id');}
             if($request->email == '' | $request->email == null){return redirect()->back()->with('error', 'Please input email');}
             if($request->course == '' | $request->course == null){return redirect()->back()->with('error', 'Please input course');}
+            if($request->year_level == '' | $request->year_level == null){return redirect()->back()->with('error', 'Please input year level');}
             if($college == '' | $college == null){return redirect()->back()->with('error', 'Please select college');}
             if(!$college){return redirect()->back()->with('error', 'Invalid input');}
            
@@ -68,6 +69,7 @@ class VotersController extends Controller
                 'student_id' => 'string|max:255',
                 'email' => 'string|max:255',
                 'course' => 'string|max:255',
+                'year_level' => 'integer|min:1|max:4',
             ]);
             
             if($validator->fails()){return redirect()->back()->with('error', 'Invalid input');}
@@ -104,6 +106,7 @@ class VotersController extends Controller
             $voter->course = $request->course;
             $voter->college = $college->acronym;
             $voter->passkey = Hash::make($passkey);
+            $voter->year_level = $request->year_level; // Add year level
             $voter->save();
 
             return redirect()->back()->with('success', 'Voter registered successfully. ' . $passkey);
@@ -123,6 +126,7 @@ class VotersController extends Controller
             if($request->student_id == '' | $request->student_id == null){return redirect()->back()->with('error', 'Please input student id');}
             if($request->email == '' | $request->email == null){return redirect()->back()->with('error', 'Please input email');}
             if($request->course == '' | $request->course == null){return redirect()->back()->with('error', 'Please input course');}
+            if($request->year_level == '' | $request->year_level == null){return redirect()->back()->with('error', 'Please input year level');}
             if($college == '' | $college == null){return redirect()->back()->with('error', 'Please select college');}
             if(!$college){return redirect()->back()->with('error', 'Invalid input');}
             if(!$voter) {return redirect()->back()->with('error', 'Voter not found');}
@@ -132,6 +136,7 @@ class VotersController extends Controller
                 'student_id' => 'string|max:255',
                 'email' => 'string|max:255',
                 'course' => 'string|max:255',
+                'year_level' => 'integer|min:1|max:4',
             ]);
             if($validator->fails()){return redirect()->back()->with('error', 'Invalid input');}
 
@@ -153,6 +158,7 @@ class VotersController extends Controller
             $voter->email = $request->email;
             $voter->course = $request->course;
             $voter->college = $college->acronym;
+            $voter->year_level = $request->year_level; //Add year level
             $voter->save();
             return redirect()->back()->with('success', 'Voter updated successfully!');
 

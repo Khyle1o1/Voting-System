@@ -28,6 +28,7 @@ class User extends Authenticatable
         'college',
         'passkey',
         'vote_casted',
+        'year_level',
     ];
 
     protected $hidden = [

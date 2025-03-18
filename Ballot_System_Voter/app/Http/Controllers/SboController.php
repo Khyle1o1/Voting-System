@@ -24,7 +24,7 @@ class SboController extends Controller
                 $candidateArray[] = $candidateData;
             }
         }
-        return view('SBO_Vote.index', compact('candidateArray', 'college'));
+        return view('SBO_Vote.index', compact('candidateArray', 'college', 'user'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Server Error(500)');
         }
@@ -35,7 +35,7 @@ class SboController extends Controller
         try {
             $user = $request->session()->get('user');
 
-            $validator = Validator::make($request->all(), [
+            $validationRules = [
                 'governor' => 'exists:candidates,student_id',
                 'vice_governor' => 'exists:candidates,student_id',
                 'secretary' => 'exists:candidates,student_id',
@@ -44,10 +44,18 @@ class SboController extends Controller
                 'associate_treasurer' => 'exists:candidates,student_id',
                 'auditor' => 'exists:candidates,student_id',
                 'public_relation_officer' => 'exists:candidates,student_id',
-                'second_rep' => 'exists:candidates,student_id',
-                'third_rep' => 'exists:candidates,student_id',
-                'fourth_rep' => 'exists:candidates,student_id',
-            ]);
+            ];
+            
+            // Add validation rule only for the representative that matches the user's year level
+            if ($user->year_level == 2) {
+                $validationRules['second_rep'] = 'exists:candidates,student_id';
+            } elseif ($user->year_level == 3) {
+                $validationRules['third_rep'] = 'exists:candidates,student_id';
+            } elseif ($user->year_level == 4) {
+                $validationRules['fourth_rep'] = 'exists:candidates,student_id';
+            }
+            
+            $validator = Validator::make($request->all(), $validationRules);
             
             if ($validator->fails()) {
                 return redirect()->back()->with('error', 'manghilabot pajud ka ha');
@@ -70,9 +78,15 @@ class SboController extends Controller
             $sbo->associate_treasurer = $request->associate_treasurer;
             $sbo->auditor = $request->auditor;
             $sbo->public_relation_officer = $request->public_relation_officer;
-            $sbo->{'2nd_year_rep'} = $request->second_rep;
-            $sbo->{'3rd_year_rep'} = $request->third_rep;
-            $sbo->{'4th_year_rep'} = $request->fourth_rep;
+            
+            // Set only the representative field that matches the user's year level
+            if ($user->year_level == 2) {
+                $sbo->{'2nd_year_rep'} = $request->second_rep;
+            } elseif ($user->year_level == 3) {
+                $sbo->{'3rd_year_rep'} = $request->third_rep;
+            } elseif ($user->year_level == 4) {
+                $sbo->{'4th_year_rep'} = $request->fourth_rep;
+            }
             $sbo->save();
             
             return redirect()->route('ssc.index');

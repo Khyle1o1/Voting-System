@@ -70,6 +70,10 @@
                               </th>
 
                               <th scope="col" class="px-6 py-3">
+                                    Year Level
+                              </th>
+
+                              <th scope="col" class="px-6 py-3">
                                     Vote Casted
                               </th>
                               
@@ -98,6 +102,10 @@
                               </td>
                               <td class="px-6 py-4">
                                     {{$voterData->college}}
+                              </td>
+
+                              <td class="px-6 py-4">
+                                    {{$voterData->year_level}}
                               </td>
                               
                               <td class="px-6 py-4">
@@ -128,4 +136,3 @@
             </div>
       </div>
 </div>
-

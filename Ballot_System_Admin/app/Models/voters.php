@@ -19,6 +19,7 @@ class voters extends Model
         'college',
         'passkey',
         'vote_casted',
+        'year_level',
     ];
 
     protected $hidden = [

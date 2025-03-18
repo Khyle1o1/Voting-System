@@ -48,6 +48,17 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="year_level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Level</label>
+                        <select id="year_level" name="year_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                            <option selected value="">Select Year Level</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="inline-flex text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
@@ -109,6 +120,17 @@
                             @foreach($colleges as $collegeData)
                                 <option value="{{$collegeData->college_id}}" {{$collegeData->acronym == $voterData->college ? 'selected' : '' }}>{{$collegeData->acronym}}</option>
                             @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="year_level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Level</label>
+                        <select id="year_level" name="year_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                            <option selected value="">Select Year Level</option>
+                            <option value="1" {{$voterData->year_level == 1 ? 'selected' : '' }}>1st Year</option>
+                            <option value="2" {{$voterData->year_level == 2 ? 'selected' : '' }}>2nd Year</option>
+                            <option value="3" {{$voterData->year_level == 3 ? 'selected' : '' }}>3rd Year</option>
+                            <option value="4" {{$voterData->year_level == 4 ? 'selected' : '' }}>4th Year</option>
                         </select>
                     </div>
                 </div>
